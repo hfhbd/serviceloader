@@ -1,4 +1,8 @@
 version: 2
+registries:
+  google:
+    type: maven-repository
+    url: https://dl.google.com/dl/android/maven2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -12,3 +16,5 @@ updates:
       interval: "daily"
     assignees:
       - "hfhbd"
+    registries:
+      - google
