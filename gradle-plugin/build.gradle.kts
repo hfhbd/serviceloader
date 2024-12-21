@@ -1,11 +1,15 @@
 plugins {
     `kotlin-dsl`
     id("setup")
+    id("com.android.lint")
 }
 
 kotlin.jvmToolchain(21)
 
-val pluginFiles by configurations.creating
+val pluginFiles = configurations.dependencyScope("pluginFiles")
+val pluginFilesClasspath = configurations.resolvable("pluginFilesClasspath") {
+    extendsFrom(pluginFiles.get())
+}
 
 dependencies {
     compileOnly(libs.plugins.ksp.toDep())
@@ -15,6 +19,8 @@ dependencies {
 
     testImplementation(kotlin("test"))
     pluginFiles(libs.plugins.ksp.toDep())
+
+    lintChecks(libs.gradle.lint)
 }
 
 fun Provider<PluginDependency>.toDep() = map {
@@ -41,6 +47,6 @@ gradlePlugin.plugins.register("serviceloader") {
 }
 
 tasks.test {
-    environment("pluginFiles", pluginFiles.joinToString(":"))
+    environment("pluginFiles", pluginFilesClasspath.get().joinToString(":"))
     environment("projectDir", project.rootDir.toString())
 }
