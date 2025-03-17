@@ -1,3 +1,8 @@
+plugins {
+    kotlin("multiplatform")
+    id("setup")
+}
+
 
 kotlin {
     jvmToolchain(8)
