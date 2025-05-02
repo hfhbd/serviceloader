@@ -15,7 +15,7 @@ import com.tschuchort.compiletesting.SourceFile
 import com.tschuchort.compiletesting.configureKsp
 import com.tschuchort.compiletesting.sourcesGeneratedBySymbolProcessor
 import org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @ExperimentalCompilerApi
