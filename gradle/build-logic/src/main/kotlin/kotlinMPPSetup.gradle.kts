@@ -52,6 +52,14 @@ kotlin {
     androidNativeX64()
     mingwX64()
     watchosDeviceArm64()
+
+    sourceSets {
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+    }
 }
 
 val emptyJar by tasks.registering(Jar::class) { }

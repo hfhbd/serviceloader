@@ -14,8 +14,14 @@ kotlin.compilerOptions {
 dependencies {
     compileOnly(libs.kotlin.compiler)
 
-    testImplementation(kotlin("test"))
-    testImplementation(libs.kotlinCompilerTester)
-    testImplementation(libs.kotlin.compiler.embeddable)
-    testImplementation(projects.runtime)
+}
+
+testing.suites.named("test", JvmTestSuite::class) {
+    useKotlinTest()
+
+    dependencies {
+        implementation(libs.kotlinCompilerTester)
+        implementation(libs.kotlin.compiler.embeddable)
+        implementation(projects.runtime)
+    }
 }
