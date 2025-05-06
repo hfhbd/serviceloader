@@ -82,10 +82,6 @@ class KotlinTesting {
 
         val build = GradleRunner.create()
             .withPluginClasspath()
-            .apply {
-                val pluginFiles = System.getenv("pluginFiles")?.split(":")?.map { File(it) } ?: emptyList()
-                withPluginClasspath(pluginClasspath + pluginFiles)
-            }
             .withProjectDir(tmp)
             .withArguments(":build", ":compileBarKotlin", "--stacktrace", "--configuration-cache")
             .build()
@@ -187,10 +183,6 @@ class KotlinTesting {
 
         val build = GradleRunner.create()
             .withPluginClasspath()
-            .apply {
-                val pluginFiles = System.getenv("pluginFiles")?.split(":")?.map { File(it) } ?: emptyList()
-                withPluginClasspath(pluginClasspath + pluginFiles)
-            }
             .withProjectDir(tmp)
             .withArguments(":assemble", "--stacktrace", "--configuration-cache")
             .build()
