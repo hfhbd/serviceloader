@@ -74,10 +74,6 @@ class KspTesting {
 
         val build = GradleRunner.create()
             .withPluginClasspath()
-            .apply {
-                val pluginFiles = System.getenv("pluginFiles")?.split(":")?.map { File(it) } ?: emptyList()
-                withPluginClasspath(pluginClasspath + pluginFiles)
-            }
             .withProjectDir(tmp)
             .withArguments(":assemble", ":kspBarKotlin", "--stacktrace", "--configuration-cache")
             .build()
@@ -168,10 +164,6 @@ class KspTesting {
 
         val build = GradleRunner.create()
             .withPluginClasspath()
-            .apply {
-                val pluginFiles = System.getenv("pluginFiles")?.split(":")?.map { File(it) } ?: emptyList()
-                withPluginClasspath(pluginClasspath + pluginFiles)
-            }
             .withProjectDir(tmp)
             .withArguments(":assemble", "--stacktrace", "--configuration-cache")
             .build()
@@ -243,10 +235,6 @@ class KspTesting {
 
         val build = GradleRunner.create()
             .withPluginClasspath()
-            .apply {
-                val pluginFiles = System.getenv("pluginFiles")?.split(":")?.map { File(it) } ?: emptyList()
-                withPluginClasspath(pluginClasspath + pluginFiles)
-            }
             .withProjectDir(tmp)
             .withArguments(":assemble", "--stacktrace", "--configuration-cache")
             .build()
