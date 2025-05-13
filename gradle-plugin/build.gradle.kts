@@ -41,8 +41,6 @@ gradlePlugin.plugins.register("serviceloader") {
 }
 
 testing.suites.named("test", JvmTestSuite::class) {
-    useKotlinTest()
-
     dependencies {
         implementation(libs.plugins.ksp.toDep())
     }
