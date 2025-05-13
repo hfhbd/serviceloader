@@ -3,12 +3,8 @@ plugins {
 }
 
 kotlin {
-    sourceSets {
-        commonTest {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
+    jvm {
+        withJava()
     }
 }
 
