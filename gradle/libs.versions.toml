@@ -10,7 +10,7 @@ kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler", version.ref
 kotlin-compiler-embeddable = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
 kotlinCompilerTester = { module = "dev.zacsweers.kctfork:core", version.ref = "kct" }
 kotlinCompilerTester-ksp = { module = "dev.zacsweers.kctfork:ksp", version.ref = "kct" }
-gradle-lint = { module = "androidx.lint:lint-gradle", version = "1.0.0-alpha03" }
+gradle-lint = { module = "androidx.lint:lint-gradle", version = "1.0.0-alpha04" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
