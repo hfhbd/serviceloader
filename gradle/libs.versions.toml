@@ -6,7 +6,7 @@ ksp = "2.2.0-RC-2.0.1"
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler", version.ref = "kotlin" }
 
-gradle-lint = { module = "androidx.lint:lint-gradle", version = "1.0.0-alpha03" }
+gradle-lint = { module = "androidx.lint:lint-gradle", version = "1.0.0-alpha04" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

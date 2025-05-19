@@ -51,3 +51,7 @@ testing.suites.named("test", JvmTestSuite::class) {
         }
     }
 }
+
+lint {
+    baseline = file("lint-baseline.xml")
+}
