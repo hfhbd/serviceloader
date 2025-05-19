@@ -1,7 +1,7 @@
 package app.softwork.serviceloader.plugin.kotlin
 
-import app.softwork.serviceloader.plugin.kotlin.runners.AbstractBoxTest
-import app.softwork.serviceloader.plugin.kotlin.runners.AbstractDiagnosticTest
+import app.softwork.serviceloader.plugin.kotlin.runners.AbstractJvmBoxTest
+import app.softwork.serviceloader.plugin.kotlin.runners.AbstractJvmDiagnosticTest
 import org.jetbrains.kotlin.generators.generateTestGroupSuiteWithJUnit5
 
 fun main() {
@@ -10,11 +10,11 @@ fun main() {
 
     generateTestGroupSuiteWithJUnit5 {
         testGroup(testDataRoot = testData, testsRoot = generatedTests) {
-            testClass<AbstractDiagnosticTest> {
+            testClass<AbstractJvmDiagnosticTest> {
                 model("diagnostics")
             }
 
-            testClass<AbstractBoxTest> {
+            testClass<AbstractJvmBoxTest> {
                 model("box")
             }
         }
