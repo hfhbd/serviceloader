@@ -95,7 +95,7 @@ class KotlinTesting {
             temp.toUri().toString(),
         )
         assertEquals(
-            "FooImpl",
+            "FooImpl\n",
             (temp / "build/generated/serviceloader/main/resources/META-INF/services/Foo").readText()
         )
         assertEquals(
@@ -105,7 +105,7 @@ class KotlinTesting {
             temp.toUri().toString(),
         )
         assertEquals(
-            "BarImpl",
+            "BarImpl\n",
             (temp / "build/generated/serviceloader/bar/resources/META-INF/services/Bar").readText()
         )
         assertEquals(
@@ -205,11 +205,11 @@ class KotlinTesting {
             temp.toUri().toString(),
         )
         assertEquals(
-            "FooImpl",
+            "FooImpl\n",
             (temp / "build/generated/serviceloader/jvmMain/resources/META-INF/services/Foo").readText()
         )
         assertEquals(
-            "CommonFooImpl",
+            "CommonFooImpl\n",
             (temp / "build/generated/serviceloader/jvmMain/resources/META-INF/services/CommonFoo").readText()
         )
 
