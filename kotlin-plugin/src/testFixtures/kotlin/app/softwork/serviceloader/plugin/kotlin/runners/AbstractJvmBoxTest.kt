@@ -1,31 +1,24 @@
 package app.softwork.serviceloader.plugin.kotlin.runners
 
-import org.jetbrains.kotlin.platform.jvm.JvmPlatforms
+import app.softwork.serviceloader.plugin.kotlin.services.ExtensionRegistrarConfigurator
+import app.softwork.serviceloader.plugin.kotlin.services.PluginAnnotationsProvider
 import org.jetbrains.kotlin.test.FirParser
-import org.jetbrains.kotlin.test.TargetBackend
-import org.jetbrains.kotlin.test.backend.BlackBoxCodegenSuppressor
 import org.jetbrains.kotlin.test.backend.handlers.AbstractIrHandler
-import org.jetbrains.kotlin.test.backend.handlers.IrTextDumpHandler
-import org.jetbrains.kotlin.test.backend.handlers.IrTreeVerifierHandler
-import org.jetbrains.kotlin.test.backend.handlers.JvmBoxRunner
 import org.jetbrains.kotlin.test.backend.ir.IrBackendInput
-import org.jetbrains.kotlin.test.backend.ir.JvmIrBackendFacade
 import org.jetbrains.kotlin.test.builders.TestConfigurationBuilder
 import org.jetbrains.kotlin.test.builders.irHandlersStep
-import org.jetbrains.kotlin.test.builders.jvmArtifactsHandlersStep
-import org.jetbrains.kotlin.test.directives.CodegenTestDirectives.DUMP_IR
-import org.jetbrains.kotlin.test.directives.configureFirParser
-import org.jetbrains.kotlin.test.frontend.fir.Fir2IrResultsConverter
+import org.jetbrains.kotlin.test.directives.CodegenTestDirectives
+import org.jetbrains.kotlin.test.directives.FirDiagnosticsDirectives
+import org.jetbrains.kotlin.test.directives.JvmEnvironmentConfigurationDirectives
 import org.jetbrains.kotlin.test.model.BackendKind
-import org.jetbrains.kotlin.test.model.DependencyKind
 import org.jetbrains.kotlin.test.model.TestModule
 import org.jetbrains.kotlin.test.model.nameWithoutExtension
-import org.jetbrains.kotlin.test.runners.RunnerWithTargetBackendForTestGeneratorMarker
+import org.jetbrains.kotlin.test.runners.codegen.AbstractFirBlackBoxCodegenTestBase
+import org.jetbrains.kotlin.test.services.EnvironmentBasedStandardLibrariesPathProvider
+import org.jetbrains.kotlin.test.services.KotlinStandardLibrariesPathProvider
 import org.jetbrains.kotlin.test.services.TestServices
 import java.io.File
 import kotlin.test.assertEquals
-import kotlin.test.assertFails
-import kotlin.test.assertTrue
 import kotlin.test.fail
 
 /*
@@ -37,42 +30,47 @@ import kotlin.test.fail
  *
  * All of them are located in `org.jetbrains.kotlin.test.directives` package
  */
-open class AbstractBoxTest : BaseTestRunner(), RunnerWithTargetBackendForTestGeneratorMarker {
-    override val targetBackend: TargetBackend
-        get() = TargetBackend.JVM_IR
+open class AbstractJvmBoxTest : AbstractFirBlackBoxCodegenTestBase(FirParser.LightTree) {
+    override fun createKotlinStandardLibrariesPathProvider(): KotlinStandardLibrariesPathProvider {
+        return EnvironmentBasedStandardLibrariesPathProvider
+    }
 
     override fun configure(builder: TestConfigurationBuilder) {
-        with(builder) {
-            globalDefaults {
-                targetBackend = TargetBackend.JVM_IR
-                targetPlatform = JvmPlatforms.defaultJvmPlatform
-                dependencyKind = DependencyKind.Binary
-            }
+        super.configure(builder)
 
-            configureFirParser(FirParser.Psi)
+        with(builder) {
+            /*
+             * Containers of different directives, which can be used in tests:
+             * - ModuleStructureDirectives
+             * - LanguageSettingsDirectives
+             * - DiagnosticsDirectives
+             * - FirDiagnosticsDirectives
+             * - CodegenTestDirectives
+             * - JvmEnvironmentConfigurationDirectives
+             *
+             * All of them are located in `org.jetbrains.kotlin.test.directives` package
+             */
 
             defaultDirectives {
-                +DUMP_IR
+                +CodegenTestDirectives.DUMP_IR
+                +FirDiagnosticsDirectives.FIR_DUMP
+                +JvmEnvironmentConfigurationDirectives.FULL_JDK
+                +CodegenTestDirectives.IGNORE_DEXING // Avoids loading R8 from the classpath.
             }
-
             val created = mutableMapOf<String, String>()
-            commonFirWithPluginFrontendConfiguration { fileName, fileContent ->
-                created[fileName] = fileContent
-            }
-            facadeStep(::Fir2IrResultsConverter)
+            useConfigurators(
+                ::PluginAnnotationsProvider,
+                {
+                    ExtensionRegistrarConfigurator(it) { fileName, fileContent ->
+                        created[fileName] = fileContent
+                    }
+                }
+            )
             irHandlersStep {
                 useHandlers(
-                    ::IrTextDumpHandler,
-                    ::IrTreeVerifierHandler,
                     { testServices, artifactKind -> A(testServices, artifactKind, created) },
                 )
             }
-            facadeStep(::JvmIrBackendFacade)
-            jvmArtifactsHandlersStep {
-                useHandlers(::JvmBoxRunner)
-            }
-
-            useAfterAnalysisCheckers(::BlackBoxCodegenSuppressor)
         }
     }
 }
