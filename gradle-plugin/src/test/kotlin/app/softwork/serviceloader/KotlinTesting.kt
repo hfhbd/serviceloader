@@ -87,6 +87,7 @@ class KotlinTesting {
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
+
         assertEquals(
             setOf("Foo"),
             (temp / "build/generated/serviceloader/main/resources/META-INF/services").toFile().listFiles()
@@ -94,10 +95,18 @@ class KotlinTesting {
             temp.toUri().toString(),
         )
         assertEquals(
+            "FooImpl\n",
+            (temp / "build/generated/serviceloader/main/resources/META-INF/services/Foo").readText()
+        )
+        assertEquals(
             setOf("Bar"),
             (temp / "build/generated/serviceloader/bar/resources/META-INF/services").toFile().listFiles()
                 ?.map { it.name }?.toSet(),
             temp.toUri().toString(),
+        )
+        assertEquals(
+            "BarImpl\n",
+            (temp / "build/generated/serviceloader/bar/resources/META-INF/services/Bar").readText()
         )
         assertEquals(
             setOf("Foo"),
@@ -194,6 +203,14 @@ class KotlinTesting {
             (temp / "build/generated/serviceloader/jvmMain/resources/META-INF/services").toFile().listFiles()
                 ?.map { it.name }?.toSet(),
             temp.toUri().toString(),
+        )
+        assertEquals(
+            "FooImpl\n",
+            (temp / "build/generated/serviceloader/jvmMain/resources/META-INF/services/Foo").readText()
+        )
+        assertEquals(
+            "CommonFooImpl\n",
+            (temp / "build/generated/serviceloader/jvmMain/resources/META-INF/services/CommonFoo").readText()
         )
 
         assertEquals(

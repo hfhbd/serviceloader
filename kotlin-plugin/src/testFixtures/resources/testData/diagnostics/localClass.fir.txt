@@ -1,0 +1,14 @@
+FILE: localClass.kt
+    package foo.bar
+
+    public abstract interface Bar : R|kotlin/Any| {
+    }
+    public final fun main(): R|kotlin/Unit| {
+        @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) local final class BarImpl : R|foo/bar/Bar| {
+            public constructor(): R|<local>/BarImpl| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }

@@ -1,0 +1,18 @@
+FILE: nested.kt
+    package foo.bar
+
+    public abstract interface Bar : R|kotlin/Any| {
+        public abstract interface A : R|kotlin/Any| {
+        }
+
+        @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar.A|)) public final class BarImpl : R|foo/bar/Bar.A| {
+            public constructor(): R|foo/bar/Bar.BarImpl| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        ^box String(OK)
+    }

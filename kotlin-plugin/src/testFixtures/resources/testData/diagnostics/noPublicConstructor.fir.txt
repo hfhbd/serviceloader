@@ -1,0 +1,11 @@
+FILE: noPublicConstructor.kt
+    package foo.bar
+
+    public abstract interface Bar : R|kotlin/Any| {
+    }
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) public final class BarImpl : R|foo/bar/Bar| {
+        private constructor(): R|foo/bar/BarImpl| {
+            super<R|kotlin/Any|>()
+        }
+
+    }

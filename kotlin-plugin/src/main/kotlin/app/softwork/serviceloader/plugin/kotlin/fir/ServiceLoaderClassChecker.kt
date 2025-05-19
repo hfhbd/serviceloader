@@ -17,10 +17,9 @@ import org.jetbrains.kotlin.fir.resolve.*
 import org.jetbrains.kotlin.fir.types.*
 
 internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheckerKind.Common) {
+    context(context: CheckerContext, reporter: DiagnosticReporter)
     override fun check(
         declaration: FirRegularClass,
-        context: CheckerContext,
-        reporter: DiagnosticReporter
     ) {
         val matcher = context.session.serviceLoaderPredicateMatchingService
         if (matcher.isAnnotated(declaration.symbol)) {
@@ -43,7 +42,6 @@ internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheck
                     SUPERTYPE_OF_CLASS_DOES_NOT_MATCH,
                     declaration.symbol,
                     forClassValueSymbol,
-                    context,
                 )
             }
             if (declaration.constructors(context.session).none { constructorSymbol ->
@@ -54,7 +52,6 @@ internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheck
                     declaration.source,
                     NO_PUBLIC_CONSTRUCTOR,
                     declaration.symbol,
-                    context,
                 )
             }
             if (declaration.isAbstract) {
@@ -62,7 +59,6 @@ internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheck
                     declaration.source,
                     ABSTRACT_CLASS,
                     declaration.symbol,
-                    context,
                 )
             }
             if (declaration.isLocal) {
@@ -70,7 +66,6 @@ internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheck
                     declaration.source,
                     LOCAL_CLASS,
                     declaration.symbol,
-                    context,
                 )
             }
         }

@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.ir.util.*
 import org.jetbrains.kotlin.ir.visitors.*
 import org.jetbrains.kotlin.name.ClassId
 
-internal data object WriteServiceLoaderVisitor : IrElementVisitor<Unit, MutableMap<String, MutableList<String>>> {
+internal data object WriteServiceLoaderVisitor : IrVisitor<Unit, MutableMap<String, MutableList<String>>>() {
 
     override fun visitElement(
         element: IrElement,
