@@ -1,15 +1,11 @@
 [versions]
-kotlin = "2.1.21"
-ksp = "2.1.21-2.0.1"
-kct = "0.7.0"
+kotlin = "2.2.0-RC"
+ksp = "2.2.0-RC-2.0.1"
 
 [libraries]
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler", version.ref = "kotlin" }
 
-kotlin-compiler-embeddable = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
-kotlinCompilerTester = { module = "dev.zacsweers.kctfork:core", version.ref = "kct" }
-kotlinCompilerTester-ksp = { module = "dev.zacsweers.kctfork:ksp", version.ref = "kct" }
 gradle-lint = { module = "androidx.lint:lint-gradle", version = "1.0.0-alpha03" }
 
 [plugins]
@@ -17,3 +13,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 mavencentral = { id = "io.github.hfhbd.mavencentral", version = "0.0.17" }
 gradle-lint = { id = "com.android.lint", version = "8.11.0-alpha10" }
+kotlin-compiler-testing = { id = "io.github.hfhbd.kotlin-compiler-testing", version = "0.0.1" }

@@ -1,6 +1,7 @@
 plugins {
     id("kotlinSetup")
     id("maven-publish")
+    id("io.github.hfhbd.kotlin-compiler-testing")
 }
 
 publishing.publications.register<MavenPublication>("mavenJava") {
@@ -9,16 +10,13 @@ publishing.publications.register<MavenPublication>("mavenJava") {
 
 kotlin.compilerOptions {
     optIn.add("org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi")
+    freeCompilerArgs.add("-Xcontext-parameters")
 }
 
 dependencies {
-    compileOnly(libs.kotlin.compiler)
+    annotationsRuntime(projects.runtime)
 }
 
-testing.suites.named("test", JvmTestSuite::class) {
-    dependencies {
-        implementation(libs.kotlinCompilerTester)
-        implementation(libs.kotlin.compiler.embeddable)
-        implementation(projects.runtime)
-    }
+val generateTests by tasks.existing(JavaExec::class) {
+    mainClass.set("app.softwork.serviceloader.plugin.kotlin.GenerateTestsKt")
 }

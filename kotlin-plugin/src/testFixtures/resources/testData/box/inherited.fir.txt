@@ -1,0 +1,16 @@
+FILE: inherited.kt
+    package foo.bar
+
+    public abstract interface Bar : R|kotlin/Any| {
+    }
+    public abstract interface Baz : R|foo/bar/Bar| {
+    }
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) public final class BarImpl : R|foo/bar/Baz| {
+        public constructor(): R|foo/bar/BarImpl| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        ^box String(OK)
+    }
