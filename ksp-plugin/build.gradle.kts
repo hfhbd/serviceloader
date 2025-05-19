@@ -10,13 +10,3 @@ publishing.publications.register<MavenPublication>("mavenJava") {
 dependencies {
     compileOnly(libs.ksp.api)
 }
-
-testing.suites.named("test", JvmTestSuite::class) {
-    useKotlinTest()
-
-    dependencies {
-        implementation(libs.kotlinCompilerTester.ksp)
-        implementation(libs.ksp.api)
-        implementation(projects.runtime)
-    }
-}

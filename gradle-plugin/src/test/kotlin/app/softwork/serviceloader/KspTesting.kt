@@ -87,10 +87,18 @@ class KspTesting {
             temp.toUri().toString(),
         )
         assertEquals(
+            "FooImpl",
+            (temp / "build/generated/serviceloader/main/resources/META-INF/services/Foo").readText()
+        )
+        assertEquals(
             setOf("Bar"),
             (temp / "build/generated/ksp/bar/resources/META-INF/services").toFile().listFiles()
                 ?.map { it.name }?.toSet(),
             temp.toUri().toString(),
+        )
+        assertEquals(
+            "BarImpl",
+            (temp / "build/generated/serviceloader/main/resources/META-INF/services/Bar").readText()
         )
     }
 
@@ -176,6 +184,14 @@ class KspTesting {
                 ?.map { it.name }?.toSet(),
             temp.toUri().toString(),
         )
+        assertEquals(
+            "FooImpl",
+            (temp / "build/generated/ksp/jvm/jvmMain/resources/META-INF/services/Foo").readText()
+        )
+        assertEquals(
+            "CommonFooImpl",
+            (temp / "build/generated/ksp/jvm/jvmMain/resources/META-INF/services/CommonFoo").readText()
+        )
     }
 
     @Test
@@ -246,6 +262,10 @@ class KspTesting {
             (temp / "build/generated/ksp/main/resources/META-INF/services").toFile().listFiles()
                 ?.map { it.name }?.toSet(),
             temp.toUri().toString(),
+        )
+        assertEquals(
+            "FooImpl",
+            (temp / "build/generated/ksp/main/resources/META-INF/services/Foo").readText()
         )
     }
 }
