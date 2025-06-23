@@ -26,7 +26,7 @@ internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheck
 
             val forClassValueSymbol = declaration.annotations.getAnnotationByClassId(
                 classId = serviceLoaderClass, session = context.session,
-            )!!.argumentMapping.mapping[forClass]!!.extractClassFromArgument(context.session)!!
+            )!!.argumentMapping.mapping[forClass]!!.extractClassFromArgument(context.session) ?: return
             val forClassValue = forClassValueSymbol.classId
 
             val supertypes = lookupSuperTypes(
