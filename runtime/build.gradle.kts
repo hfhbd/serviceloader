@@ -3,12 +3,12 @@ plugins {
 }
 
 kotlin.jvm {
-    val main = compilations.getByName("main")
-    val jvm9 = compilations.create("9Main") {
-        associateWith(main)
+    val main = compilations.named("main")
+    val jvm9 = compilations.register("9Main") {
+        associateWith(main.get())
     }
     tasks.named(artifactsTaskName, Jar::class) {
-        from(jvm9.output.allOutputs) {
+        from(jvm9.map { it.output.allOutputs}) {
             into("META-INF/versions/9")
         }
         manifest {
