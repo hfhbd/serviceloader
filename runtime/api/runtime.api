@@ -1,0 +1,4 @@
+public abstract interface annotation class app/softwork/serviceloader/ServiceLoader : java/lang/annotation/Annotation {
+	public abstract fun forClass ()Ljava/lang/Class;
+}
+
