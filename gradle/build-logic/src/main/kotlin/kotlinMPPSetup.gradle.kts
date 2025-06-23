@@ -61,7 +61,7 @@ kotlin {
     }
 }
 
-val emptyJar by tasks.registering(Jar::class) { }
+val emptyJar by tasks.registering(Jar::class)
 
 publishing {
     publications.withType<MavenPublication>().configureEach {

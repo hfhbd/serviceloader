@@ -17,6 +17,6 @@ dependencies {
     annotationsRuntime(projects.runtime)
 }
 
-val generateTests by tasks.existing(JavaExec::class) {
+tasks.generateTests {
     mainClass.set("app.softwork.serviceloader.plugin.kotlin.GenerateTestsKt")
 }
