@@ -1,5 +1,5 @@
 plugins {
-    `kotlin-dsl`
+    id("java-gradle-plugin")
     id("kotlinSetup")
     id("com.android.lint")
 }
