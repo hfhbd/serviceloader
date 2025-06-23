@@ -1,0 +1,9 @@
+FILE: noServiceLoaderValue.kt
+    package foo.bar
+
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(<Unresolved name: Bar>#)) public final class BarImpl : <ERROR TYPE REF: Symbol not found for Bar> {
+        public constructor(): R|foo/bar/BarImpl| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
