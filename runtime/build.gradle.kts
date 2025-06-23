@@ -25,6 +25,10 @@ kotlin {
     }
 }
 
+tasks.check {
+   dependsOn(tasks.checkLegacyAbi)
+}
+
 tasks.named<JavaCompile>("compileJvm9MainJava") {
     javaCompiler.set(javaToolchains.compilerFor {})
     options.release.set(9)
