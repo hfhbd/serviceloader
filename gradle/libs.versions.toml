@@ -12,5 +12,5 @@ gradle-lint = { module = "androidx.lint:lint-gradle", version = "1.0.0-alpha05" 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 mavencentral = { id = "io.github.hfhbd.mavencentral", version = "0.0.17" }
-gradle-lint = { id = "com.android.lint", version = "8.10.1" }
+gradle-lint = { id = "com.android.lint", version = "8.11.0" }
 kotlin-compiler-testing = { id = "io.github.hfhbd.kotlin-compiler-testing", version = "0.0.3" }
