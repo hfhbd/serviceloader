@@ -1,0 +1,10 @@
+FILE: disableAbstractError.kt
+    package foo.bar
+
+    public abstract interface Bar : R|kotlin/Any| {
+    }
+    @R|kotlin/Suppress|(names = vararg(String(SERVICELOADER_ABSTRACT_CLASS), String(SERVICELOADER_NO_PUBLIC_CONSTRUCTOR))) @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) public abstract interface BarImpl : R|foo/bar/Bar| {
+    }
+    public final fun box(): R|kotlin/String| {
+        ^box String(OK)
+    }

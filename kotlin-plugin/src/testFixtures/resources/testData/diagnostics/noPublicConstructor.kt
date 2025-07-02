@@ -6,5 +6,5 @@ import app.softwork.serviceloader.ServiceLoader
 
 interface Bar
 
-<!NO_PUBLIC_CONSTRUCTOR!>@ServiceLoader(Bar::class)
+<!SERVICELOADER_NO_PUBLIC_CONSTRUCTOR!>@ServiceLoader(Bar::class)
 class BarImpl private constructor() : Bar<!>

@@ -1,9 +1,9 @@
 package app.softwork.serviceloader.plugin.kotlin.fir
 
-import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.ABSTRACT_CLASS
-import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.LOCAL_CLASS
-import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.NO_PUBLIC_CONSTRUCTOR
-import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.SUPERTYPE_OF_CLASS_DOES_NOT_MATCH
+import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.SERVICELOADER_ABSTRACT_CLASS
+import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.SERVICELOADER_LOCAL_CLASS
+import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.SERVICELOADER_NO_PUBLIC_CONSTRUCTOR
+import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderErrors.SERVICELOADER_SUPERTYPE_OF_CLASS_DOES_NOT_MATCH
 import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderPredicateMatchingService.Companion.forClass
 import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderPredicateMatchingService.Companion.serviceLoaderClass
 import app.softwork.serviceloader.plugin.kotlin.fir.ServiceLoaderPredicateMatchingService.Companion.serviceLoaderPredicateMatchingService
@@ -39,7 +39,7 @@ internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheck
             if (supertypes.none { it.classId == forClassValue }) {
                 reporter.reportOn(
                     declaration.source,
-                    SUPERTYPE_OF_CLASS_DOES_NOT_MATCH,
+                    SERVICELOADER_SUPERTYPE_OF_CLASS_DOES_NOT_MATCH,
                     declaration.symbol,
                     forClassValueSymbol,
                 )
@@ -50,21 +50,21 @@ internal data object ServiceLoaderClassChecker : FirRegularClassChecker(MppCheck
             ) {
                 reporter.reportOn(
                     declaration.source,
-                    NO_PUBLIC_CONSTRUCTOR,
+                    SERVICELOADER_NO_PUBLIC_CONSTRUCTOR,
                     declaration.symbol,
                 )
             }
             if (declaration.isAbstract) {
                 reporter.reportOn(
                     declaration.source,
-                    ABSTRACT_CLASS,
+                    SERVICELOADER_ABSTRACT_CLASS,
                     declaration.symbol,
                 )
             }
             if (declaration.isLocal) {
                 reporter.reportOn(
                     declaration.source,
-                    LOCAL_CLASS,
+                    SERVICELOADER_LOCAL_CLASS,
                     declaration.symbol,
                 )
             }
