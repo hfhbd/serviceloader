@@ -6,7 +6,7 @@ The Kotlin compiler plugin does not support Java source code. In this case, you 
 
 ## Usage
 
-This plugin is uploaded to mavenCentral, so you need to add `mavenCentral()` to your plugin repositories:
+The Gradle plugin is uploaded to mavenCentral, so you need to add `mavenCentral()` to your plugin repositories:
 
 ```kotlin
 // settings.gradle.kts
@@ -17,9 +17,9 @@ pluginManagement {
 }
 ```
 
-### Use as Kotlin compiler plugin
+### Use the Kotlin compiler plugin
 
-Apply the Kotlin compiler plugin.
+Apply the Kotlin compiler plugin via Gradle:
 
 ```kotlin
 // build.gradle.kts
@@ -33,7 +33,7 @@ You might also want to enable the compiler plugin in IntelliJ by setting `kotlin
 
 ### Use with ksp
 
-Apply the ksp plugin.
+Apply the ksp plugin via Gradle:.
 
 ```kotlin
 // build.gradle.kts
@@ -51,10 +51,10 @@ And use the `app.softwork.serviceloader.ServiceLoader` annotation:
 ```kotlin
 import app.softwork.serviceloader.ServiceLoader
 
-interface Provider
+interface Service
 
-@ServiceLoader(Provider::class)
-class Impl : Provider
+@ServiceLoader(Service::class)
+class Provider : Service
 ```
 
 ## License
