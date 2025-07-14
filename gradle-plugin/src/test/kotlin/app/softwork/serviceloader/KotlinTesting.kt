@@ -4,6 +4,7 @@ import org.gradle.testkit.runner.*
 import java.io.*
 import java.nio.file.*
 import kotlin.io.path.*
+import kotlin.io.writeText
 import kotlin.test.*
 
 class KotlinTesting {
@@ -33,19 +34,7 @@ class KotlinTesting {
             |
         """.trimMargin()
         )
-        val projectDir = System.getenv("projectDir")
-        File(tmp, "settings.gradle.kts").apply {
-            createNewFile()
-        }.writeText(
-            """
-            |includeBuild("$projectDir")
-            |
-            |plugins {
-            |  id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-            |}
-            |
-        """.trimMargin()
-        )
+        tmp.includeBuild()
         val kotlin = File(tmp, "src/main/kotlin").apply {
             mkdirs()
         }
@@ -143,19 +132,8 @@ class KotlinTesting {
             |
         """.trimMargin()
         )
-        val projectDir = System.getenv("projectDir")
-        File(tmp, "settings.gradle.kts").apply {
-            createNewFile()
-        }.writeText(
-            """
-            |includeBuild("$projectDir")
-            |
-            |plugins {
-            |  id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-            |}
-            
-        """.trimMargin()
-        )
+
+        tmp.includeBuild()
         val kotlin = File(tmp, "src/jvmMain/kotlin").apply {
             mkdirs()
         }
@@ -220,4 +198,20 @@ class KotlinTesting {
             temp.toUri().toString(),
         )
     }
+}
+
+fun File.includeBuild() {
+    val projectDir = System.getenv("projectDir")
+    File(this, "settings.gradle.kts").apply {
+        createNewFile()
+    }.writeText(
+        """
+            |includeBuild("$projectDir")
+            |
+            |plugins {
+            |  id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+            |}
+            |
+        """.trimMargin()
+    )
 }

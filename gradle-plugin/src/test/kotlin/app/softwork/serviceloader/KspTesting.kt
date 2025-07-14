@@ -32,12 +32,7 @@ class KspTesting {
             |
         """.trimMargin()
         )
-        val projectDir = System.getenv("projectDir")
-        File(tmp, "settings.gradle.kts").apply { 
-            createNewFile()
-        }.writeText("""
-            |includeBuild("$projectDir")
-        """.trimMargin())
+        tmp.includeBuild()
         val kotlin = File(tmp, "src/main/kotlin").apply {
             mkdirs()
         }
@@ -130,12 +125,7 @@ class KspTesting {
             |
         """.trimMargin()
         )
-        val projectDir = System.getenv("projectDir")
-        File(tmp, "settings.gradle.kts").apply {
-            createNewFile()
-        }.writeText("""
-            |includeBuild("$projectDir")
-        """.trimMargin())
+        tmp.includeBuild()
         val kotlin = File(tmp, "src/jvmMain/kotlin").apply {
             mkdirs()
         }
@@ -217,12 +207,7 @@ class KspTesting {
             |
         """.trimMargin()
         )
-        val projectDir = System.getenv("projectDir")
-        File(tmp, "settings.gradle.kts").apply {
-            createNewFile()
-        }.writeText("""
-            |includeBuild("$projectDir")
-        """.trimMargin())
+        tmp.includeBuild()
         val java = File(tmp, "src/main/java").apply {
             mkdirs()
         }
