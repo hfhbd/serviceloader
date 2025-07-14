@@ -8,3 +8,5 @@ interface Foo
 
 @ServiceLoader(Foo::class)
 class Bar : Foo by <!UNRESOLVED_REFERENCE!>Baz<!>()
+
+/* GENERATED_FIR_TAGS: classDeclaration, classReference, inheritanceDelegation, interfaceDeclaration */

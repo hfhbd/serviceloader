@@ -3,33 +3,24 @@ package app.softwork.serviceloader
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.listProperty
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.*
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.plugin.FilesSubpluginOption
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
+import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
+import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
 public class ServiceLoaderPlugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) {
         super.apply(target)
-
-        target.plugins.withId("org.jetbrains.kotlin.multiplatform") {
-            val kotlin = target.extensions.getByType(KotlinMultiplatformExtension::class.java)
-            kotlin.sourceSets.configureEach {
-                dependencies {
-                    implementation(runtimeDependency())
-                }
-            }
-        }
-        target.plugins.withId("org.jetbrains.kotlin.jvm") {
-            val kotlin = target.extensions.getByType(KotlinJvmProjectExtension::class.java)
-            kotlin.sourceSets.configureEach {
-                dependencies {
-                    compileOnly(runtimeDependency())
-                }
+        val kotlin = target.extensions.getByType(KotlinProjectExtension::class.java)
+        kotlin.sourceSets.configureEach {
+            dependencies {
+                implementation("app.softwork.serviceloader:runtime:$VERSION")
             }
         }
     }
-
-    private fun runtimeDependency() = "app.softwork.serviceloader:runtime:$VERSION"
 
     override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean =
         kotlinCompilation.platformType == KotlinPlatformType.jvm

@@ -8,3 +8,5 @@ interface Bar
 
 <!SERVICELOADER_SUPERTYPE_OF_CLASS_DOES_NOT_MATCH!>@ServiceLoader(Bar::class)
 class BarImpl<!>
+
+/* GENERATED_FIR_TAGS: classDeclaration, classReference, interfaceDeclaration */

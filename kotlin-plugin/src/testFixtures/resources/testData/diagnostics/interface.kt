@@ -8,3 +8,5 @@ interface Bar
 
 <!SERVICELOADER_ABSTRACT_CLASS, SERVICELOADER_NO_PUBLIC_CONSTRUCTOR!>@ServiceLoader(Bar::class)
 interface BarImpl : Bar<!>
+
+/* GENERATED_FIR_TAGS: classReference, interfaceDeclaration */

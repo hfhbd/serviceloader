@@ -10,3 +10,5 @@ fun main() {
     <!SERVICELOADER_LOCAL_CLASS!>@ServiceLoader(Bar::class)
     class BarImpl : Bar<!>
 }
+
+/* GENERATED_FIR_TAGS: classDeclaration, classReference, functionDeclaration, interfaceDeclaration, localClass */
