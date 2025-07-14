@@ -8,3 +8,5 @@ interface Bar
 
 <!SERVICELOADER_NO_PUBLIC_CONSTRUCTOR!>@ServiceLoader(Bar::class)
 class BarImpl private constructor() : Bar<!>
+
+/* GENERATED_FIR_TAGS: classDeclaration, classReference, interfaceDeclaration, primaryConstructor */
