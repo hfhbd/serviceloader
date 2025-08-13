@@ -72,7 +72,7 @@ class KotlinTesting {
         val build = GradleRunner.create()
             .withPluginClasspath()
             .withProjectDir(tmp)
-            .withArguments(":build", ":compileBarKotlin", "--stacktrace", "--configuration-cache")
+            .withArguments(":build", ":compileBarKotlin", "--stacktrace", "--configuration-cache", "--scan")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
@@ -206,11 +206,26 @@ fun File.includeBuild() {
         createNewFile()
     }.writeText(
         """
-            |includeBuild("$projectDir")
+            |pluginManagement {
+            |  includeBuild("${projectDir}/gradle/build-logic")
+            |  repositories {
+            |    mavenCentral()
+            |    gradlePluginPortal()
+            |    google()
+            |  }
+            |}
             |
             |plugins {
-            |  id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+            |  id("myRepos")
             |}
+            |
+            |dependencyResolutionManagement.versionCatalogs.register("libs") {
+            |  from(files("${projectDir}/gradle/libs.versions.toml"))
+            |}
+            |
+            |rootProject.name = "testing"
+            |
+            |includeBuild("$projectDir")
             |
         """.trimMargin()
     )
