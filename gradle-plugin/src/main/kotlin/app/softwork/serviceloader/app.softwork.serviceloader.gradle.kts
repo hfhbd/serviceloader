@@ -23,7 +23,7 @@ pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
 }
 
 pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
-    val kotlin = extensions.getByName("kotlin") as KotlinMultiplatformExtension
+    val kotlin = extensions.getByName<KotlinMultiplatformExtension>("kotlin")
     val jvmTargets = kotlin.targets.withType(KotlinJvmTarget::class)
     jvmTargets.configureEach {
         val kspName = "ksp" + name.replaceFirstChar { it.uppercaseChar() }

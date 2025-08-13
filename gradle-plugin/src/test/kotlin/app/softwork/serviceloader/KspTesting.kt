@@ -22,6 +22,10 @@ class KspTesting {
             |  id("com.google.devtools.ksp")
             |}
             |
+            |repositories {
+            |  mavenCentral()
+            |}
+            |
             |kotlin.jvmToolchain(8)
             |
             |sourceSets.register("bar")
@@ -108,6 +112,10 @@ class KspTesting {
             |  id("com.google.devtools.ksp")
             |}
             |
+            |repositories {
+            |  mavenCentral()
+            |}
+            |
             |kotlin {
             |  jvmToolchain(8)
             |
@@ -155,7 +163,7 @@ class KspTesting {
         val build = GradleRunner.create()
             .withPluginClasspath()
             .withProjectDir(tmp)
-            .withArguments(":assemble", "--stacktrace", "--configuration-cache", "--scan")
+            .withArguments(":assemble", "--stacktrace", "--configuration-cache")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
@@ -189,6 +197,10 @@ class KspTesting {
             |  id("app.softwork.serviceloader")
             |  kotlin("jvm")
             |  id("com.google.devtools.ksp")
+            |}
+            |
+            |repositories {
+            |  mavenCentral()
             |}
             |
             |kotlin.jvmToolchain(8)
