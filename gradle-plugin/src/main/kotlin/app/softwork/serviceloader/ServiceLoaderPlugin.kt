@@ -13,7 +13,6 @@ import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
 public class ServiceLoaderPlugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) {
-        super.apply(target)
         val kotlin = target.extensions.getByType(KotlinProjectExtension::class.java)
         kotlin.sourceSets.configureEach {
             dependencies {
