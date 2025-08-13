@@ -8,6 +8,9 @@ dependencies {
     implementation(libs.plugins.mavencentral.toDep())
     implementation(libs.plugins.gradle.lint.toDep())
     implementation(libs.plugins.kotlin.compiler.testing.toDep())
+
+    implementation(libs.plugins.foojay.toDep())
+    implementation(libs.plugins.develocity.toDep())
 }
 
 fun Provider<PluginDependency>.toDep() = map {

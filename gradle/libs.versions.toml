@@ -14,3 +14,6 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 mavencentral = { id = "io.github.hfhbd.mavencentral", version = "0.0.17" }
 gradle-lint = { id = "com.android.lint", version = "8.12.0" }
 kotlin-compiler-testing = { id = "io.github.hfhbd.kotlin-compiler-testing", version = "0.0.3" }
+
+foojay = { id = "org.gradle.toolchains.foojay-resolver-convention", version = "1.0.0" }
+develocity = { id = "com.gradle.develocity", version = "4.1" }
