@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.2.20-RC"
-ksp = "2.2.20-Beta2-2.0.2"
+ksp = "2.2.20-RC-2.0.2"
 
 [libraries]
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
