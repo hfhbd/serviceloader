@@ -12,7 +12,7 @@ gradle-lint = { module = "androidx.lint:lint-gradle", version = "1.0.0-alpha05" 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 mavencentral = { id = "io.github.hfhbd.mavencentral", version = "0.0.17" }
-gradle-lint = { id = "com.android.lint", version = "8.12.1" }
+gradle-lint = { id = "com.android.lint", version = "8.12.2" }
 kotlin-compiler-testing = { id = "io.github.hfhbd.kotlin-compiler-testing", version = "0.0.3" }
 
 foojay = { id = "org.gradle.toolchains.foojay-resolver-convention", version = "1.0.0" }
