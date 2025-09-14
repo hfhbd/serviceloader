@@ -155,7 +155,7 @@ class KspTesting {
         val build = GradleRunner.create()
             .withPluginClasspath()
             .withProjectDir(tmp)
-            .withArguments(":assemble", "--stacktrace", "--configuration-cache", "--scan")
+            .withArguments(":assemble", "--stacktrace", "--configuration-cache")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)

@@ -8,7 +8,11 @@ kotlin.jvmToolchain(21)
 
 dependencies {
     compileOnly(libs.plugins.ksp.toDep())
-    compileOnly(libs.plugins.kotlin.jvm.toDep())
+    // https://github.com/gradle/gradle/issues/23576
+    runtimeOnly(libs.plugins.ksp.toDep())
+
+    implementation(libs.plugins.kotlin.jvm.toDep())
+
 
     lintChecks(libs.gradle.lint)
 }

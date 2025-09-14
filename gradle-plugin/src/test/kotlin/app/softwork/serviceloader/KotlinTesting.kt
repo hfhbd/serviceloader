@@ -68,7 +68,7 @@ class KotlinTesting {
         val build = GradleRunner.create()
             .withPluginClasspath()
             .withProjectDir(tmp)
-            .withArguments(":build", ":compileBarKotlin", "--stacktrace", "--configuration-cache", "--scan")
+            .withArguments(":build", ":compileBarKotlin", "--stacktrace", "--configuration-cache")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
