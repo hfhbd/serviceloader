@@ -13,7 +13,6 @@ dependencies {
 
     implementation(libs.plugins.kotlin.jvm.toDep())
 
-
     lintChecks(libs.gradle.lint)
 }
 
@@ -46,7 +45,12 @@ lint {
 }
 
 testing.suites.named("test", JvmTestSuite::class) {
+    dependencies {
+        implementation(libs.plugins.ksp.toDep())
+    }
+
     targets.configureEach {
+
         testTask {
             environment("settingsDir", layout.settingsDirectory.asFile.absolutePath)
         }
