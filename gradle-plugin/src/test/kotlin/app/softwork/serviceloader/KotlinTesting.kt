@@ -22,10 +22,6 @@ class KotlinTesting {
             |  id("app.softwork.serviceloader-compiler")
             |}
             |
-            |repositories {
-            |  mavenCentral()
-            |}
-            |
             |kotlin.jvmToolchain(8)
             |
             |sourceSets.register("bar")
@@ -119,10 +115,6 @@ class KotlinTesting {
             |  id("app.softwork.serviceloader-compiler")
             |}
             |
-            |repositories {
-            |  mavenCentral()
-            |}
-            |
             |kotlin {
             |  jvmToolchain(8)
             |
@@ -201,16 +193,31 @@ class KotlinTesting {
 }
 
 fun File.includeBuild() {
-    val projectDir = System.getenv("projectDir")
+    val settingsDir = System.getenv("settingsDir")
     File(this, "settings.gradle.kts").apply {
         createNewFile()
     }.writeText(
         """
-            |includeBuild("$projectDir")
+            |pluginManagement {
+            |  includeBuild("${settingsDir}/gradle/build-logic")
+            |  repositories {
+            |    mavenCentral()
+            |    gradlePluginPortal()
+            |    google()
+            |  }
+            |}
             |
             |plugins {
-            |  id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+            |  id("myRepos")
             |}
+            |
+            |dependencyResolutionManagement.versionCatalogs.register("libs") {
+            |  from(files("${settingsDir}/gradle/libs.versions.toml"))
+            |}
+            |
+            |rootProject.name = "testing"
+            |
+            |includeBuild("$settingsDir")
             |
         """.trimMargin()
     )

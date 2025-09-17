@@ -22,10 +22,6 @@ class KspTesting {
             |  id("com.google.devtools.ksp")
             |}
             |
-            |repositories {
-            |  mavenCentral()
-            |}
-            |
             |kotlin.jvmToolchain(8)
             |
             |sourceSets.register("bar")
@@ -112,10 +108,6 @@ class KspTesting {
             |  id("com.google.devtools.ksp")
             |}
             |
-            |repositories {
-            |  mavenCentral()
-            |}
-            |
             |kotlin {
             |  jvmToolchain(8)
             |
@@ -197,10 +189,6 @@ class KspTesting {
             |  id("app.softwork.serviceloader")
             |  kotlin("jvm")
             |  id("com.google.devtools.ksp")
-            |}
-            |
-            |repositories {
-            |  mavenCentral()
             |}
             |
             |kotlin.jvmToolchain(8)
