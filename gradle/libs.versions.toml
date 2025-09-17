@@ -16,4 +16,4 @@ gradle-lint = { id = "com.android.lint", version = "8.13.0" }
 kotlin-compiler-testing = { id = "io.github.hfhbd.kotlin-compiler-testing", version = "0.0.3" }
 
 foojay = { id = "org.gradle.toolchains.foojay-resolver-convention", version = "1.0.0" }
-develocity = { id = "com.gradle.develocity", version = "4.1.1" }
+develocity = { id = "com.gradle.develocity", version = "4.2" }
