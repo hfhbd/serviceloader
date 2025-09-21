@@ -9,6 +9,7 @@ import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
 public abstract class ServiceLoaderKspPlugin  : Plugin<Project> {
     override fun apply(target: Project) {
+        target.pluginManager.apply("com.google.devtools.ksp")
         val kspPluginDep = target.dependencies.create("app.softwork.serviceloader:ksp-plugin:$VERSION")
         val kspAnnotationDep = target.dependencies.create("app.softwork.serviceloader:runtime:$VERSION")
 
@@ -36,6 +37,5 @@ public abstract class ServiceLoaderKspPlugin  : Plugin<Project> {
                 target.dependencies.add(it.compileOnlyConfigurationName, kspAnnotationDep)
             }
         }
-
     }
 }

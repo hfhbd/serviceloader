@@ -1,256 +1,91 @@
 package app.softwork.serviceloader
 
-import org.gradle.testkit.runner.*
-import java.io.*
-import java.nio.file.*
-import kotlin.io.path.*
-import kotlin.test.*
+import org.gradle.testkit.runner.GradleRunner
+import org.gradle.testkit.runner.TaskOutcome
+import java.io.File
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class KspTesting {
     @Test
     fun kotlinJvm() {
-        val temp = Files.createTempDirectory("gradle")
-        val tmp = temp.toFile()
-        File(tmp, "build.gradle.kts").apply {
-            createNewFile()
-        }.writeText(
-            //language=kotlin
-            """
-            |plugins {
-            |  id("app.softwork.serviceloader")
-            |  kotlin("jvm")
-            |  id("com.google.devtools.ksp")
-            |}
-            |
-            |repositories {
-            |  mavenCentral()
-            |}
-            |
-            |kotlin.jvmToolchain(8)
-            |
-            |sourceSets.register("bar")
-            |
-        """.trimMargin()
-        )
-        tmp.includeBuild()
-        val kotlin = File(tmp, "src/main/kotlin").apply {
-            mkdirs()
-        }
-        File(kotlin, "Foo.kt").apply {
-            createNewFile()
-        }.writeText(
-            //language=kotlin
-            """
-            |import app.softwork.serviceloader.ServiceLoader
-            |
-            |interface Foo
-            |
-            |@ServiceLoader(Foo::class)
-            |class FooImpl : Foo
-        """.trimMargin()
-        )
-
-        val bar = File(tmp, "src/bar/kotlin").apply {
-            mkdirs()
-        }
-        File(bar, "Bar.kt").apply {
-            createNewFile()
-        }.writeText(
-            //language=kotlin
-            """
-            |import app.softwork.serviceloader.ServiceLoader
-            |
-            |interface Bar
-            |
-            |@ServiceLoader(Bar::class)
-            |class BarImpl : Bar
-        """.trimMargin()
-        )
+        val temp = File("src/testFixtures/resources/ksp-jvm")
 
         val build = GradleRunner.create()
-            .withPluginClasspath()
-            .withProjectDir(tmp)
-            .withArguments(":assemble", ":kspBarKotlin", "--stacktrace", "--configuration-cache")
+            .withProjectDir(temp)
+            .withArguments(":clean", ":assemble", ":kspBarKotlin", "--stacktrace", "--configuration-cache")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
-        assertEquals(TaskOutcome.SUCCESS, build.task(":kspKotlin")?.outcome, build.tasks.joinToString(prefix = temp.toString()))
+        assertEquals(TaskOutcome.SUCCESS, build.task(":kspKotlin")?.outcome)
+
         assertEquals(
             setOf("Foo"),
-            (temp / "build/generated/ksp/main/resources/META-INF/services").toFile().listFiles()
+            File(temp, "build/generated/ksp/main/resources/META-INF/services").listFiles()
                 ?.map { it.name }?.toSet(),
-            temp.toUri().toString(),
         )
         assertEquals(
             "FooImpl\n",
-            (temp / "build/generated/ksp/main/resources/META-INF/services/Foo").readText()
+            File(temp, "build/generated/ksp/main/resources/META-INF/services/Foo").readText()
         )
         assertEquals(
             setOf("Bar"),
-            (temp / "build/generated/ksp/bar/resources/META-INF/services").toFile().listFiles()
+            File(temp, "build/generated/ksp/bar/resources/META-INF/services").listFiles()
                 ?.map { it.name }?.toSet(),
-            temp.toUri().toString(),
         )
         assertEquals(
             "BarImpl\n",
-            (temp / "build/generated/ksp/bar/resources/META-INF/services/Bar").readText()
+            File(temp, "build/generated/ksp/bar/resources/META-INF/services/Bar").readText()
         )
     }
 
     @Test
     fun kotlinMpp() {
-        val temp = Files.createTempDirectory("gradle")
-        val tmp = temp.toFile()
-        File(tmp, "build.gradle.kts").apply {
-            createNewFile()
-        }.writeText(
-            //language=kotlin
-            """
-            |plugins {
-            |  id("app.softwork.serviceloader")
-            |  kotlin("multiplatform")
-            |  id("com.google.devtools.ksp")
-            |}
-            |
-            |repositories {
-            |  mavenCentral()
-            |}
-            |
-            |kotlin {
-            |  jvmToolchain(8)
-            |
-            |  jvm()
-            |  linuxX64()
-            |}
-            |
-        """.trimMargin()
-        )
-        tmp.includeBuild()
-        val kotlin = File(tmp, "src/jvmMain/kotlin").apply {
-            mkdirs()
-        }
-        File(kotlin, "Foo.kt").apply {
-            createNewFile()
-        }.writeText(
-            //language=kotlin
-            """
-            |import app.softwork.serviceloader.ServiceLoader
-            |
-            |interface Foo
-            |
-            |@ServiceLoader(Foo::class)
-            |class FooImpl : Foo
-        """.trimMargin()
-        )
-        
-        val common = File(tmp, "src/commonMain/kotlin").apply {
-            mkdirs()
-        }
-        File(common, "Foo.kt").apply {
-            createNewFile()
-        }.writeText(
-            //language=kotlin
-            """
-            |import app.softwork.serviceloader.ServiceLoader
-            |
-            |interface CommonFoo
-            |
-            |@ServiceLoader(CommonFoo::class)
-            |class CommonFooImpl : CommonFoo
-        """.trimMargin()
-        )
+        val temp = File("src/testFixtures/resources/ksp-mpp")
 
         val build = GradleRunner.create()
-            .withPluginClasspath()
-            .withProjectDir(tmp)
-            .withArguments(":assemble", "--stacktrace", "--configuration-cache")
+            .withProjectDir(temp)
+            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
-        assertEquals(TaskOutcome.SUCCESS, build.task(":kspKotlinJvm")?.outcome, build.tasks.joinToString())
+        assertEquals(TaskOutcome.SUCCESS, build.task(":kspKotlinJvm")?.outcome)
+
         assertEquals(
             setOf("Foo", "CommonFoo"),
-            (temp / "build/generated/ksp/jvm/jvmMain/resources/META-INF/services").toFile().listFiles()
+            File(temp, "build/generated/ksp/jvm/jvmMain/resources/META-INF/services").listFiles()
                 ?.map { it.name }?.toSet(),
-            temp.toUri().toString(),
         )
         assertEquals(
             "FooImpl\n",
-            (temp / "build/generated/ksp/jvm/jvmMain/resources/META-INF/services/Foo").readText()
+            File(temp, "build/generated/ksp/jvm/jvmMain/resources/META-INF/services/Foo").readText()
         )
         assertEquals(
             "CommonFooImpl\n",
-            (temp / "build/generated/ksp/jvm/jvmMain/resources/META-INF/services/CommonFoo").readText()
+            File(temp, "build/generated/ksp/jvm/jvmMain/resources/META-INF/services/CommonFoo").readText()
         )
     }
 
     @Test
     fun java() {
-        val temp = Files.createTempDirectory("gradle")
-        val tmp = temp.toFile()
-        File(tmp, "build.gradle.kts").apply {
-            createNewFile()
-        }.writeText(
-            //language=kotlin
-            """
-            |plugins {
-            |  id("app.softwork.serviceloader")
-            |  kotlin("jvm")
-            |  id("com.google.devtools.ksp")
-            |}
-            |
-            |repositories {
-            |  mavenCentral()
-            |}
-            |
-            |kotlin.jvmToolchain(8)
-            |
-        """.trimMargin()
-        )
-        tmp.includeBuild()
-        val java = File(tmp, "src/main/java").apply {
-            mkdirs()
-        }
-        File(java, "Foo.java").apply {
-            createNewFile()
-        }.writeText(
-            //language=Java
-            """
-            |import app.softwork.serviceloader.ServiceLoader;
-            |
-            |public interface Foo { }
-        """.trimMargin()
-        )
-
-        File(java, "FooImpl.java").apply {
-            createNewFile()
-        }.writeText(
-            //language=Java
-            """
-            |import app.softwork.serviceloader.ServiceLoader;
-            |
-            |@ServiceLoader(forClass = Foo.class)
-            |public class FooImpl implements Foo {}
-        """.trimMargin()
-        )
+        val temp = File("src/testFixtures/resources/ksp-java")
 
         val build = GradleRunner.create()
-            .withPluginClasspath()
-            .withProjectDir(tmp)
-            .withArguments(":assemble", "--stacktrace", "--configuration-cache")
+            .withProjectDir(temp)
+            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
-        assertEquals(TaskOutcome.SUCCESS, build.task(":kspKotlin")?.outcome, build.tasks.joinToString(prefix = temp.toString()))
+        assertEquals(TaskOutcome.SUCCESS, build.task(":kspKotlin")?.outcome)
+
         assertEquals(
             setOf("Foo"),
-            (temp / "build/generated/ksp/main/resources/META-INF/services").toFile().listFiles()
+            File(temp, "build/generated/ksp/main/resources/META-INF/services").listFiles()
                 ?.map { it.name }?.toSet(),
-            temp.toUri().toString(),
         )
         assertEquals(
             "FooImpl\n",
-            (temp / "build/generated/ksp/main/resources/META-INF/services/Foo").readText()
+            File(temp, "build/generated/ksp/main/resources/META-INF/services/Foo").readText()
         )
     }
 }
