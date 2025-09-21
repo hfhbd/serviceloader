@@ -19,7 +19,6 @@ dependencyResolutionManagement {
 
     repositories {
         mavenCentral()
-        google()
 
         exclusiveContent {
             forRepository {
