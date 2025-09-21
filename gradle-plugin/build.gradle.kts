@@ -1,5 +1,5 @@
 plugins {
-    `kotlin-dsl`
+    id("java-gradle-plugin")
     id("kotlinSetup")
     id("com.android.lint")
 }
@@ -7,10 +7,6 @@ plugins {
 kotlin.jvmToolchain(21)
 
 dependencies {
-    compileOnly(libs.plugins.ksp.toDep())
-    // https://github.com/gradle/gradle/issues/23576
-    runtimeOnly(libs.plugins.ksp.toDep())
-
     implementation(libs.plugins.kotlin.jvm.toDep())
 
     lintChecks(libs.gradle.lint)
@@ -39,12 +35,12 @@ gradlePlugin.plugins.register("serviceloader") {
     id = "app.softwork.serviceloader-compiler"
     implementationClass = "app.softwork.serviceloader.ServiceLoaderPlugin"
 }
+gradlePlugin.plugins.register("serviceloader-ksp") {
+    id = "app.softwork.serviceloader"
+    implementationClass = "app.softwork.serviceloader.ServiceLoaderKspPlugin"
+}
 
 testing.suites.named("test", JvmTestSuite::class) {
-    dependencies {
-        implementation(libs.plugins.ksp.toDep())
-    }
-
     targets.configureEach {
         testTask {
             environment("projectDir", layout.settingsDirectory.toString())
