@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("setup")
+    id("myPublish")
 }
 
 kotlin {
@@ -14,4 +14,8 @@ kotlin {
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+testing.suites.withType(JvmTestSuite::class).configureEach {
+    useKotlinTest()
 }

@@ -1,11 +1,6 @@
 plugins {
     id("kotlinSetup")
-    id("maven-publish")
     id("io.github.hfhbd.kotlin-compiler-testing")
-}
-
-publishing.publications.register<MavenPublication>("mavenJava") {
-    from(components["java"])
 }
 
 kotlin.compilerOptions {
@@ -15,6 +10,10 @@ kotlin.compilerOptions {
 
 dependencies {
     annotationsRuntime(projects.runtime)
+}
+
+publishing.publications.register<MavenPublication>("mavenJava") {
+    from(components["java"])
 }
 
 tasks.generateTests {
