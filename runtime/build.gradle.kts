@@ -1,35 +1,8 @@
-import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
-
 plugins {
-    id("kotlinMPPSetup")
+    id("kotlinMPPRuntime")
 }
 
-kotlin {
-    abiValidation {
-        @OptIn(ExperimentalAbiValidation::class)
-        enabled.set(true)
-    }
-    jvm {
-        val main = compilations.getByName("main")
-        val jvm9 = compilations.create("9Main") {
-            associateWith(main)
-        }
-        tasks.named(artifactsTaskName, Jar::class) {
-            from(jvm9.output.allOutputs) {
-                into("META-INF/versions/9")
-            }
-            manifest {
-                manifest.attributes("Multi-Release" to true)
-            }
-        }
-    }
-}
-
-tasks.check {
-   dependsOn(tasks.checkLegacyAbi)
-}
-
-tasks.named<JavaCompile>("compileJvm9MainJava") {
+tasks.compileJvm9MainJava {
     javaCompiler.set(javaToolchains.compilerFor {})
     options.release.set(9)
 

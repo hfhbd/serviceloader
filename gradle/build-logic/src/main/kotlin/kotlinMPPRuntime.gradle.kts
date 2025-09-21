@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
+
 plugins {
     kotlin("multiplatform")
-    id("setup")
+    id("myPublish")
 }
 
 kotlin {
@@ -13,7 +15,25 @@ kotlin {
         extraWarnings.set(true)
     }
 
-    jvm()
+    abiValidation {
+        @OptIn(ExperimentalAbiValidation::class)
+        enabled.set(true)
+    }
+
+    jvm {
+        val main = compilations.getByName("main")
+        val jvm9 = compilations.create("9Main") {
+            associateWith(main)
+        }
+        tasks.named(artifactsTaskName, Jar::class) {
+            from(jvm9.output.allOutputs) {
+                into("META-INF/versions/9")
+            }
+            manifest {
+                manifest.attributes("Multi-Release" to true)
+            }
+        }
+    }
 
     js {
         nodejs()
@@ -71,9 +91,19 @@ publishing {
     }
 }
 
+// https://youtrack.jetbrains.com/issue/KT-46466
+val signingTasks = tasks.withType<Sign>()
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    dependsOn(signingTasks)
+}
+
 plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsPlugin> {
     the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsEnvSpec>().downloadBaseUrl = null
 }
 plugins.withType<org.jetbrains.kotlin.gradle.targets.wasm.nodejs.WasmNodeJsPlugin> {
     the<org.jetbrains.kotlin.gradle.targets.wasm.nodejs.WasmNodeJsEnvSpec>().downloadBaseUrl = null
+}
+
+tasks.check {
+    dependsOn(tasks.checkLegacyAbi)
 }

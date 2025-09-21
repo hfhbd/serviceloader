@@ -40,11 +40,3 @@ gradlePlugin {
         implementationClass = "app.softwork.serviceloader.ServiceLoaderKspPlugin"
     }
 }
-
-testing.suites.named("test", JvmTestSuite::class) {
-    targets.configureEach {
-        testTask {
-            environment("projectDir", layout.settingsDirectory.toString())
-        }
-    }
-}
