@@ -13,4 +13,4 @@ mavencentral = { id = "io.github.hfhbd.mavencentral", version = "0.0.23" }
 kotlin-compiler-testing = { id = "io.github.hfhbd.kotlin-compiler-testing", version = "0.0.3" }
 
 foojay = { id = "org.gradle.toolchains.foojay-resolver-convention", version = "1.0.0" }
-develocity = { id = "com.gradle.develocity", version = "4.2" }
+develocity = { id = "com.gradle.develocity", version = "4.2.1" }
