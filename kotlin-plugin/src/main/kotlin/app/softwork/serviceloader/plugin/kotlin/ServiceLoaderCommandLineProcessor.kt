@@ -1,5 +1,6 @@
 package app.softwork.serviceloader.plugin.kotlin
 
+import app.softwork.serviceloader.plugin.kotlin.ServiceLoaderCompilerPluginRegistrar.Companion.PLUGIN_ID
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
 import org.jetbrains.kotlin.compiler.plugin.CliOption
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
@@ -14,7 +15,7 @@ public class ServiceLoaderCommandLineProcessor : CommandLineProcessor {
         val OPTION_OUTPUT_ARG = CompilerConfigurationKey<File>(OPTION_OUTPUT_DIR)
     }
 
-    override val pluginId: String = "app.softwork.serviceloader"
+    override val pluginId: String = PLUGIN_ID
 
     override val pluginOptions: List<CliOption> = listOf(
         CliOption(
