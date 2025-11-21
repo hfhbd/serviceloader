@@ -11,6 +11,7 @@ import java.io.File
 
 public class ServiceLoaderCompilerPluginRegistrar : CompilerPluginRegistrar() {
     override val supportsK2: Boolean = true
+    override val pluginId: String = PLUGIN_ID
 
     override fun ExtensionStorage.registerExtensions(configuration: CompilerConfiguration) {
         registerServiceLoaderFIR()
@@ -29,6 +30,7 @@ public class ServiceLoaderCompilerPluginRegistrar : CompilerPluginRegistrar() {
     }
 
     internal companion object {
+        const val PLUGIN_ID = "app.softwork.serviceloader"
         fun ExtensionStorage.registerServiceLoaderFIR() {
             FirExtensionRegistrarAdapter.registerExtension(ServiceLoaderFirExtensionRegistrar)
         }
