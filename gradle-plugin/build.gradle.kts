@@ -30,13 +30,13 @@ gradlePlugin {
         description = "A Gradle plugin to generate and validate service loaders"
     }
 
-    plugins.register("serviceloader") {
-        id = "app.softwork.serviceloader-compiler"
+    plugins.register("app.softwork.serviceloader-compiler") {
+        id = name
         implementationClass = "app.softwork.serviceloader.ServiceLoaderPlugin"
     }
 
-    plugins.register("serviceloader-ksp") {
-        id = "app.softwork.serviceloader"
+    plugins.register("app.softwork.serviceloader") {
+        id = name
         implementationClass = "app.softwork.serviceloader.ServiceLoaderKspPlugin"
     }
 }

@@ -11,12 +11,12 @@ public abstract class ServiceLoaderKspPlugin  : Plugin<Project> {
     override fun apply(target: Project) {
         target.pluginManager.apply("com.google.devtools.ksp")
         val kspPluginDep = target.dependencies.create("app.softwork.serviceloader:ksp-plugin:$VERSION")
-        val kspAnnotationDep = target.dependencies.create("app.softwork.serviceloader:runtime:$VERSION")
+        val runtimeDep = target.dependencies.create("app.softwork.serviceloader:runtime:$VERSION")
 
         target.pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
             val sourceSets = target.extensions.getByName("sourceSets") as SourceSetContainer
             sourceSets.configureEach {
-                target.dependencies.add(it.compileOnlyConfigurationName, kspAnnotationDep)
+                target.dependencies.add(it.compileOnlyConfigurationName, runtimeDep)
                 if (it.name == MAIN_SOURCE_SET_NAME) {
                     target.dependencies.add("ksp", kspPluginDep)
                 } else {
@@ -34,7 +34,7 @@ public abstract class ServiceLoaderKspPlugin  : Plugin<Project> {
             }
 
             kotlin.sourceSets.named("commonMain") {
-                target.dependencies.add(it.compileOnlyConfigurationName, kspAnnotationDep)
+                target.dependencies.add(it.implementationConfigurationName, runtimeDep)
             }
         }
     }
