@@ -13,7 +13,7 @@ class KotlinTesting {
 
         val build = GradleRunner.create()
             .withProjectDir(temp)
-            .withArguments(":clean", ":build", ":compileBarKotlin", "--stacktrace", "--configuration-cache")
+            .withArguments(":clean", ":build", ":compileBarKotlin", "--stacktrace", "--configuration-cache", "-Porg.gradle.kotlin.dsl.skipMetadataVersionCheck=false")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
@@ -49,7 +49,7 @@ class KotlinTesting {
 
         val build = GradleRunner.create()
             .withProjectDir(temp)
-            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache")
+            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache", "-Porg.gradle.kotlin.dsl.skipMetadataVersionCheck=false")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)

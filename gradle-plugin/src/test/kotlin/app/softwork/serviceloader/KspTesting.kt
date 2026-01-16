@@ -13,7 +13,7 @@ class KspTesting {
 
         val build = GradleRunner.create()
             .withProjectDir(temp)
-            .withArguments(":clean", ":assemble", ":kspBarKotlin", "--stacktrace", "--configuration-cache")
+            .withArguments(":clean", ":assemble", ":kspBarKotlin", "--stacktrace", "--configuration-cache", "-Porg.gradle.kotlin.dsl.skipMetadataVersionCheck=false")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
@@ -45,7 +45,7 @@ class KspTesting {
 
         val build = GradleRunner.create()
             .withProjectDir(temp)
-            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache")
+            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache", "-Porg.gradle.kotlin.dsl.skipMetadataVersionCheck=false")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
@@ -72,7 +72,7 @@ class KspTesting {
 
         val build = GradleRunner.create()
             .withProjectDir(temp)
-            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache")
+            .withArguments(":clean", ":assemble", "--stacktrace", "--configuration-cache", "-Porg.gradle.kotlin.dsl.skipMetadataVersionCheck=false")
             .build()
 
         assertEquals(TaskOutcome.SUCCESS, build.task(":assemble")?.outcome)
