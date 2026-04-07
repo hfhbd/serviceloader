@@ -10,13 +10,12 @@ kotlin {
 
     explicitApi()
     compilerOptions {
-        allWarningsAsErrors.set(true)
         freeCompilerArgs.add("-Xexpect-actual-classes")
         extraWarnings.set(true)
     }
 
+    @OptIn(ExperimentalAbiValidation::class)
     abiValidation {
-        @OptIn(ExperimentalAbiValidation::class)
         enabled.set(true)
     }
 
@@ -47,7 +46,6 @@ kotlin {
     }
 
     // tier 1
-    macosX64()
     macosArm64()
     iosSimulatorArm64()
     iosX64()
@@ -57,11 +55,9 @@ kotlin {
     linuxX64()
     linuxArm64()
     watchosSimulatorArm64()
-    watchosX64()
     watchosArm32()
     watchosArm64()
     tvosSimulatorArm64()
-    tvosX64()
     tvosArm64()
 
     // tier 3

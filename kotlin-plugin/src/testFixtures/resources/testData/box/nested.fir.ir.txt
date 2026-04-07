@@ -3,7 +3,7 @@ FILE fqName:foo.bar fileName:/nested.kt
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Bar
     CLASS CLASS name:BarImpl modality:FINAL visibility:public superTypes:[foo.bar.Bar.A]
       annotations:
-        ServiceLoader(forClass = CLASS_REFERENCE 'CLASS INTERFACE name:A modality:ABSTRACT visibility:public superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<foo.bar.Bar.A>)
+        ServiceLoader(forClass = A::class)
       thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.Bar.BarImpl
       CONSTRUCTOR visibility:public returnType:foo.bar.Bar.BarImpl [primary]
         BLOCK_BODY

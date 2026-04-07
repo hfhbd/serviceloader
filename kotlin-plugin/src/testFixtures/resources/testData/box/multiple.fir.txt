@@ -3,7 +3,7 @@ FILE: multiple.kt
 
     public abstract interface Bar : R|kotlin/Any| {
     }
-    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) public final class BarImpl : R|foo/bar/Bar| {
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|) [evaluated = <getClass>(Q|foo/bar/Bar|)]) public final class BarImpl : R|foo/bar/Bar| {
         public constructor(): R|foo/bar/BarImpl| {
             super<R|kotlin/Any|>()
         }
@@ -11,7 +11,7 @@ FILE: multiple.kt
     }
     public abstract interface Foo : R|foo/bar/Bar| {
     }
-    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) public final class FooImpl : R|foo/bar/Foo| {
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|) [evaluated = <getClass>(Q|foo/bar/Bar|)]) public final class FooImpl : R|foo/bar/Foo| {
         public constructor(): R|foo/bar/FooImpl| {
             super<R|kotlin/Any|>()
         }

@@ -5,17 +5,15 @@ plugins {
 
 kotlin.compilerOptions {
     optIn.add("org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi")
-    freeCompilerArgs.add("-Xcontext-parameters")
 }
 
-dependencies {
-    annotationsRuntime(projects.runtime)
+kotlinTesting {
+    mainClass = "app.softwork.serviceloader.plugin.kotlin.GenerateTestsKt"
+    dependencies {
+        annotation(projects.runtime)
+    }
 }
 
 publishing.publications.register<MavenPublication>("mavenJava") {
     from(components["java"])
-}
-
-tasks.generateTests {
-    mainClass.set("app.softwork.serviceloader.plugin.kotlin.GenerateTestsKt")
 }
