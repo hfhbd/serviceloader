@@ -3,5 +3,5 @@ FILE: interface.kt
 
     public abstract interface Bar : R|kotlin/Any| {
     }
-    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) public abstract interface BarImpl : R|foo/bar/Bar| {
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|) [evaluated = <getClass>(Q|foo/bar/Bar|)]) public abstract interface BarImpl : R|foo/bar/Bar| {
     }

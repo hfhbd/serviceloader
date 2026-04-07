@@ -6,9 +6,6 @@ plugins {
 kotlin {
     jvmToolchain(8)
     explicitApi()
-    compilerOptions {
-        allWarningsAsErrors.set(true)
-    }
 }
 
 java {

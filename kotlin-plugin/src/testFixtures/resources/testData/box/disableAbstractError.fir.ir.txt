@@ -17,7 +17,7 @@ FILE fqName:foo.bar fileName:/disableAbstractError.kt
   CLASS INTERFACE name:BarImpl modality:ABSTRACT visibility:public superTypes:[foo.bar.Bar]
     annotations:
       Suppress(names = ["SERVICELOADER_ABSTRACT_CLASS", "SERVICELOADER_NO_PUBLIC_CONSTRUCTOR"] type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String)
-      ServiceLoader(forClass = CLASS_REFERENCE 'CLASS INTERFACE name:Bar modality:ABSTRACT visibility:public superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<foo.bar.Bar>)
+      ServiceLoader(forClass = Bar::class)
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.BarImpl
     FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any

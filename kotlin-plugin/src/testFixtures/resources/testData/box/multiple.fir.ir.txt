@@ -1,7 +1,7 @@
 FILE fqName:foo.bar fileName:/multiple.kt
   CLASS CLASS name:BarImpl modality:FINAL visibility:public superTypes:[foo.bar.Bar]
     annotations:
-      ServiceLoader(forClass = CLASS_REFERENCE 'CLASS INTERFACE name:Bar modality:ABSTRACT visibility:public superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<foo.bar.Bar>)
+      ServiceLoader(forClass = Bar::class)
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.BarImpl
     CONSTRUCTOR visibility:public returnType:foo.bar.BarImpl [primary]
       BLOCK_BODY
@@ -22,7 +22,7 @@ FILE fqName:foo.bar fileName:/multiple.kt
         public open fun toString (): kotlin.String declared in foo.bar.Bar
   CLASS CLASS name:FooImpl modality:FINAL visibility:public superTypes:[foo.bar.Foo]
     annotations:
-      ServiceLoader(forClass = CLASS_REFERENCE 'CLASS INTERFACE name:Bar modality:ABSTRACT visibility:public superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<foo.bar.Bar>)
+      ServiceLoader(forClass = Bar::class)
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:foo.bar.FooImpl
     CONSTRUCTOR visibility:public returnType:foo.bar.FooImpl [primary]
       BLOCK_BODY

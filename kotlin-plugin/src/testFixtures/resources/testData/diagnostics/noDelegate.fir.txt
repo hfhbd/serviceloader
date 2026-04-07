@@ -3,7 +3,7 @@ FILE: noDelegate.kt
 
     public abstract interface Foo : R|kotlin/Any| {
     }
-    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Foo|)) public final class Bar : R|foo/bar/Foo| {
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Foo|) [evaluated = <getClass>(Q|foo/bar/Foo|)]) public final class Bar : R|foo/bar/Foo| {
         public constructor(): R|foo/bar/Bar| {
             super<R|kotlin/Any|>()
         }

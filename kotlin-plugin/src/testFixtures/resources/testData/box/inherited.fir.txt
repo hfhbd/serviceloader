@@ -5,7 +5,7 @@ FILE: inherited.kt
     }
     public abstract interface Baz : R|foo/bar/Bar| {
     }
-    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|)) public final class BarImpl : R|foo/bar/Baz| {
+    @R|app/softwork/serviceloader/ServiceLoader|(forClass = <getClass>(Q|foo/bar/Bar|) [evaluated = <getClass>(Q|foo/bar/Bar|)]) public final class BarImpl : R|foo/bar/Baz| {
         public constructor(): R|foo/bar/BarImpl| {
             super<R|kotlin/Any|>()
         }
