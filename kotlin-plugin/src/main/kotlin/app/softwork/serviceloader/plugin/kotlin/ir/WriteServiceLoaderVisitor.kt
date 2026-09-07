@@ -25,7 +25,7 @@ internal data object WriteServiceLoaderVisitor : IrVisitor<Unit, MutableMap<Stri
     ) {
         val serviceLoaderAnnotation = declaration.getAnnotation(serviceLoaderFq)
         if (serviceLoaderAnnotation != null) {
-            val forClassRef = (serviceLoaderAnnotation.getValueArgument(name = forClass)!! as IrClassReference)
+            val forClassRef = serviceLoaderAnnotation.argumentMapping[forClass] as IrClassReference
             val providerFq = binaryNameByClassId(forClassRef.classType.getClass()!!.classId!!)
 
             data.computeIfAbsent(providerFq) { mutableListOf() }.add(
