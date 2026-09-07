@@ -18,7 +18,7 @@ tasks.validatePlugins {
     enableStricterValidation.set(true)
 }
 
-val version by tasks.registering(VersionTask::class)
+val version = tasks.register("version", VersionTask::class)
 
 sourceSets.main {
     kotlin.srcDir(version)
