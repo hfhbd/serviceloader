@@ -9,7 +9,7 @@ ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.re
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-mavencentral = { id = "io.github.hfhbd.mavencentral", version = "0.0.23" }
+mavencentral = { id = "io.github.hfhbd.mavencentral", version = "0.0.25" }
 kotlin-compiler-testing = { id = "io.github.hfhbd.kotlin-compiler-testing", version = "0.0.4" }
 
 foojay = { id = "org.gradle.toolchains.foojay-resolver-convention", version = "1.0.0" }
