@@ -11,7 +11,7 @@ kotlin {
     explicitApi()
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
-        extraWarnings.set(true)
+        extraWarnings = true
     }
 
     @OptIn(ExperimentalAbiValidation::class)
