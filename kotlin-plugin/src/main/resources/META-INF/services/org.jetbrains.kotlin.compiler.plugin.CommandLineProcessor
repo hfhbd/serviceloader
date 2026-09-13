@@ -1,1 +1,1 @@
-app.softwork.serviceloader.plugin.kotlin.ServiceLoaderCommandLineProcessor
+io.github.hfhbd.serviceloader.plugin.kotlin.ServiceLoaderCommandLineProcessor

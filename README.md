@@ -25,7 +25,7 @@ Apply the Kotlin compiler plugin via Gradle:
 // build.gradle.kts
 
 plugins {
-    id("app.softwork.serviceloader-compiler") version "LATEST"
+    id("io.github.hfhbd.serviceloader") version "LATEST"
 }
 ```
 
@@ -40,16 +40,16 @@ Apply the ksp plugin via Gradle:.
 
 plugins {
     id("com.google.devtools.ksp")
-    id("app.softwork.serviceloader") version "LATEST"
+    id("io.github.hfhbd.serviceloader.ksp") version "LATEST"
 }
 ```
 
 ## Annotate the code
 
-And use the `app.softwork.serviceloader.ServiceLoader` annotation:
+And use the `io.github.hfhbd.serviceloader.ServiceLoader` annotation:
 
 ```kotlin
-import app.softwork.serviceloader.ServiceLoader
+import io.github.hfhbd.serviceloader.ServiceLoader
 
 interface Service
 

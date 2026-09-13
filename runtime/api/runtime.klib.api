@@ -5,10 +5,10 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <app.softwork.serviceloader:runtime>
-open annotation class app.softwork.serviceloader/ServiceLoader : kotlin/Annotation { // app.softwork.serviceloader/ServiceLoader|null[1]
-    constructor <init>(kotlin.reflect/KClass<*>) // app.softwork.serviceloader/ServiceLoader.<init>|<init>(kotlin.reflect.KClass<*>){}[1]
+// Library unique name: <io.github.hfhbd.serviceloader:runtime>
+open annotation class io.github.hfhbd.serviceloader/ServiceLoader : kotlin/Annotation { // io.github.hfhbd.serviceloader/ServiceLoader|null[1]
+    constructor <init>(kotlin.reflect/KClass<*>) // io.github.hfhbd.serviceloader/ServiceLoader.<init>|<init>(kotlin.reflect.KClass<*>){}[1]
 
-    final val forClass // app.softwork.serviceloader/ServiceLoader.forClass|{}forClass[1]
-        final fun <get-forClass>(): kotlin.reflect/KClass<*> // app.softwork.serviceloader/ServiceLoader.forClass.<get-forClass>|<get-forClass>(){}[1]
+    final val forClass // io.github.hfhbd.serviceloader/ServiceLoader.forClass|{}forClass[1]
+        final fun <get-forClass>(): kotlin.reflect/KClass<*> // io.github.hfhbd.serviceloader/ServiceLoader.forClass.<get-forClass>|<get-forClass>(){}[1]
 }

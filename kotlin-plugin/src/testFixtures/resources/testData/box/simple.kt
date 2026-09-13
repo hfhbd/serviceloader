@@ -1,6 +1,6 @@
 package foo.bar
 
-import app.softwork.serviceloader.ServiceLoader
+import io.github.hfhbd.serviceloader.ServiceLoader
 
 interface Bar
 

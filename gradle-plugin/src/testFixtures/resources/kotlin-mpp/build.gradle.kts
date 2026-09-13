@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    id("app.softwork.serviceloader-compiler")
+    id("io.github.hfhbd.serviceloader")
 }
 
 kotlin {
