@@ -15,7 +15,7 @@ fun Provider<PluginDependency>.toDep(): Provider<ExternalModuleDependency> = map
 }
 
 tasks.validatePlugins {
-    enableStricterValidation.set(true)
+    enableStricterValidation = true
 }
 
 val version = tasks.register("version", VersionTask::class)

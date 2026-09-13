@@ -3,8 +3,8 @@ plugins {
 }
 
 tasks.compileJvm9MainJava {
-    javaCompiler.set(javaToolchains.compilerFor {})
-    options.release.set(9)
+    javaCompiler = javaToolchains.compilerFor {}
+    options.release = 9
 
     options.compilerArgumentProviders += object : CommandLineArgumentProvider {
 
@@ -12,7 +12,7 @@ tasks.compileJvm9MainJava {
         @get:PathSensitive(PathSensitivity.RELATIVE)
         val kotlinClasses = tasks.compileKotlinJvm.flatMap { it.destinationDirectory }
 
-        override fun asArguments(): List<String> = listOf(
+        override fun asArguments() = listOf(
             "--patch-module",
             "io.github.hfhbd.serviceloader.runtime=${kotlinClasses.get().asFile.absolutePath}"
         )

@@ -6,26 +6,26 @@ plugins {
 publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
-            name.set("io.github.hfhbd.serviceloader ServiceLoader Gradle Plugin")
-            description.set("A Gradle plugin to generate and validate service loaders")
-            url.set("https://github.com/hfhbd/serviceloader-gradle-plugin")
+            name = "io.github.hfhbd.serviceloader ServiceLoader Gradle Plugin"
+            description = "A Gradle plugin to generate and validate service loaders"
+            url = "https://github.com/hfhbd/serviceloader-gradle-plugin"
             licenses {
                 license {
-                    name.set("Apache-2.0")
-                    url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    name = "Apache-2.0"
+                    url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
                 }
             }
             developers {
                 developer {
-                    id.set("hfhbd")
-                    name.set("Philip Wedemann")
-                    email.set("mybztg+mavencentral@icloud.com")
+                    id = "hfhbd"
+                    name = "Philip Wedemann"
+                    email = "mybztg+mavencentral@icloud.com"
                 }
             }
             scm {
-                connection.set("https://github.com/hfhbd/serviceloader-gradle-plugin.git")
-                developerConnection.set("scm:git://github.com/hfhbd/serviceloader-gradle-plugin.git")
-                url.set("https://github.com/hfhbd/serviceloader-gradle-plugin")
+                connection = "https://github.com/hfhbd/serviceloader-gradle-plugin.git"
+                developerConnection = "scm:git://github.com/hfhbd/serviceloader-gradle-plugin.git"
+                url = "https://github.com/hfhbd/serviceloader-gradle-plugin"
             }
         }
     }
