@@ -7,7 +7,7 @@ plugins {
 publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
-            name.set("app.softwork ServiceLoader Gradle Plugin")
+            name.set("io.github.hfhbd.serviceloader ServiceLoader Gradle Plugin")
             description.set("A Gradle plugin to generate and validate service loaders")
             url.set("https://github.com/hfhbd/serviceloader-gradle-plugin")
             licenses {

@@ -1,1 +1,1 @@
-app.softwork.serviceloader.plugin.kotlin.ServiceLoaderCompilerPluginRegistrar
+io.github.hfhbd.serviceloader.plugin.kotlin.ServiceLoaderCompilerPluginRegistrar

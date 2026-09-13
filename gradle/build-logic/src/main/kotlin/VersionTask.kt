@@ -28,7 +28,7 @@ abstract class VersionTask : DefaultTask() {
             }
         }.writeText(
             """
-            |package app.softwork.serviceloader
+            |package io.github.hfhbd.serviceloader
             |
             |internal val VERSION: String = "${version.get()}"
         """.trimMargin()

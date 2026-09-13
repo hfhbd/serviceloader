@@ -2,7 +2,7 @@
 
 package foo.bar
 
-import app.softwork.serviceloader.ServiceLoader
+import io.github.hfhbd.serviceloader.ServiceLoader
 
 @ServiceLoader(<!ANNOTATION_ARGUMENT_MUST_BE_CONST!><!UNRESOLVED_REFERENCE!>Bar<!>::class<!>)
 class BarImpl : <!UNRESOLVED_REFERENCE!>Bar<!>

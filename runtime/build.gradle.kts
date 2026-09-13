@@ -14,7 +14,7 @@ tasks.compileJvm9MainJava {
 
         override fun asArguments(): List<String> = listOf(
             "--patch-module",
-            "app.softwork.serviceloader.runtime=${kotlinClasses.get().asFile.absolutePath}"
+            "io.github.hfhbd.serviceloader.runtime=${kotlinClasses.get().asFile.absolutePath}"
         )
     }
 }

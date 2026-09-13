@@ -1,5 +1,5 @@
 plugins {
-    id("app.softwork.serviceloader")
+    id("io.github.hfhbd.serviceloader.ksp")
     kotlin("multiplatform")
     id("com.google.devtools.ksp")
 }

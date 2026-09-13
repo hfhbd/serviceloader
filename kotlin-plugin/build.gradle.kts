@@ -8,7 +8,7 @@ kotlin.compilerOptions {
 }
 
 kotlinTesting {
-    mainClass = "app.softwork.serviceloader.plugin.kotlin.GenerateTestsKt"
+    mainClass = "io.github.hfhbd.serviceloader.plugin.kotlin.GenerateTestsKt"
     dependencies {
         annotation(projects.runtime)
     }

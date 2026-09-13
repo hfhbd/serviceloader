@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("app.softwork.serviceloader-compiler")
+    id("io.github.hfhbd.serviceloader")
 }
 
 kotlin.jvmToolchain(8)
