@@ -4,6 +4,13 @@ plugins {
 }
 
 publishing {
+    repositories {
+        maven(url = "https://maven.pkg.github.com/hfhbd/serviceloader") {
+            name = "GitHubPackages"
+            credentials(PasswordCredentials::class)
+        }
+    }
+
     publications.withType<MavenPublication>().configureEach {
         pom {
             name = "io.github.hfhbd.serviceloader ServiceLoader Gradle Plugin"
